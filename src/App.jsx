@@ -2,30 +2,28 @@ import { useState, useEffect } from 'react'
 import Header from './components/Header'
 import ExpensesList from './components/ExpensesList'
 import ModalWindow from './components/ModalWindow'
+import Filters from './components/Filters'
 import { generateUniqueId } from './helpers'
 import IconAddNewExpense from './img/icon-add.svg'
 
 function App() {
 
-  const [budget, setBudget] = useState(1000)
+  const [budget, setBudget] = useState(
+    Number(localStorage.getItem('cost-app-budget')) ?? 0
+  )
   const [isValidBudget, setIsValidBudget] = useState(false)
   const [modal, setModal] = useState(false)
   const [animateModal, setAnimateModal] = useState(false)
-  const [expenses, setExpenses] = useState([{
-    id:'234234234',
-    date:Date.now,
-    name:'Carne picada',
-    ammount:50,
-    category:'food'
-  },
-  {
-    id:'111112131',
-    date:Date.now,
-    name:'Pago Netflix',
-    ammount:50,
-    category:'suscriptions'
-  }])
+  const [expenses, setExpenses] = useState(
+    localStorage.getItem('cost-app-expenses') ? 
+    JSON.parse(localStorage.getItem('cost-app-expenses')) : []
+  )
+
   const [expenseEdit, setExpenseEdit] = useState({})
+
+  const [filter, setFilter] = useState('')
+  const [filteredExpenses, setFilteredExpenses] = useState([''])
+
 
   useEffect( () => {
     if ( Object.keys(expenseEdit).length > 0){
@@ -43,6 +41,33 @@ function App() {
       setAnimateModal(true)
     }, 400)
   }
+
+  useEffect( () => {
+    localStorage.setItem('cost-app-budget', budget ?? 0)
+  },[budget])
+
+  useEffect( () => {
+    localStorage.setItem('cost-app-expenses', JSON.stringify(expenses) ?? [])
+  })
+
+  useEffect( () => {
+    if(filter){
+      const filtered = expenses.filter( expense => expense.category === filter)
+      setFilteredExpenses(filtered)
+
+
+    }else{
+      //All
+    }
+
+  },[filter])
+
+  useEffect( () => {
+    const budgetLocalStorage = Number(localStorage.getItem('cost-app-budget')) ?? 0
+    if (budgetLocalStorage > 0){
+      setIsValidBudget(true)
+    }
+  },[])
 
   const saveExpense = expense => {
  
@@ -78,15 +103,22 @@ function App() {
         isValidBudget={isValidBudget}
         setIsValidBudget={setIsValidBudget}
         expenses={expenses}
+        setExpenses={setExpenses}
       />
 
       {isValidBudget && (
         <>
           <main>
+            <Filters 
+              filter={filter}
+              setFilter={setFilter}
+            />
             <ExpensesList 
               expenses={expenses}
               setExpenseEdit={setExpenseEdit}
               deleteExpense={deleteExpense}
+              filter={filter}
+              filteredExpenses={filteredExpenses}
             />
           </main>        
           <div className="new-expense">
@@ -111,8 +143,6 @@ function App() {
           setExpenseEdit={setExpenseEdit}
         />
       }
-
-
 
     </div>
   )

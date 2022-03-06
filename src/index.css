@@ -210,17 +210,17 @@ header h1 {
         text-align: left;
     }
 }
-.budget-content p.negativo,
-.budget-content p.negativo span {
-    color: red;
+.budget-content p.negative,
+.budget-content p.negative span {
+    color:#FA4643;
 }
 .budget-content span {
     font-weight: 900;
     color: var(--azul);
 }
-.reset-app {
+.reset-data {
     border: none;
-    background-color: #db2777;
+    background-color: #630d14;
     padding: 1rem;
     width: 100%;
     text-align: center;
@@ -231,7 +231,7 @@ header h1 {
     transition-property: background-color;
     transition-duration: 300ms;
 }
-.reset-app:hover {
+.reset-data:hover {
     background-color: #c71465;
     cursor: pointer;
 }
@@ -240,17 +240,17 @@ main {
     padding-top: 10rem;
 }
 
-.filtros .field {
+.filters .field {
     display: flex;
     align-items: center;
     gap: 2rem;
 }
-.filtros label {
+.filters label {
     font-size: 3rem;
     font-weight: 900;
     color: var(--gris-oscuro);
 }
-.filtros select {
+.filters select {
     flex: 1;
     padding: 1rem;
     border: none;

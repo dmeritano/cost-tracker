@@ -53,6 +53,7 @@ const ModalWindow = ( {setModal,
         }
 
         //Enough money control
+        /*
         const totalSpent = expenses.reduce( (total, expense) => expense.ammount + total, 0)
         const available = budget - totalSpent
         if (available - ammount < 0){
@@ -62,7 +63,9 @@ const ModalWindow = ( {setModal,
             },4000)
             return;            
         }
+        */
 
+        
         //All was good
         saveExpense({
             name,
