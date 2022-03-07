@@ -1,6 +1,6 @@
 ## COST TRACKER
 
-### React App - Personal Cost/Expenses Tracker
+### React App - Personal Cost/Expenses Tracker - Single Page Application
 
 App created with **Vite** 
 
