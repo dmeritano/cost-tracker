@@ -1,6 +1,10 @@
 ## COST TRACKER
 
-### React App - Personal Cost/Expenses Tracker - Single Page Application
+### React App - Personal Cost/Expenses Tracker - SPA
+
+Project created to learn REACT
+
+<u>**Deployed application URL**</u> [Cost Tracker App](https://dmeritano-cost-tracking.netlify.app)
 
 App created with **Vite** 
 
